@@ -26,6 +26,7 @@
 #include "ST7565.h"
 #include "fonts.h"
 #include "ui_gLCD.h"
+#include "MLX90614.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,15 +44,16 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
 SPI_HandleTypeDef hspi2;
 
 UART_HandleTypeDef huart2;
 
 osThreadId defaultTaskHandle;
 osThreadId myTask02Handle;
-osThreadId ui_glcdTaskHandle;
 /* USER CODE BEGIN PV */
-
+osThreadId ui_glcdTaskHandle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -59,6 +61,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_SPI2_Init(void);
+static void MX_I2C1_Init(void);
 void StartDefaultTask(void const * argument);
 void StartTask02(void const * argument);
 
@@ -107,8 +110,10 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_SPI2_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   ST7565_Init();
+  // mlx90614
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -141,6 +146,12 @@ int main(void)
   osThreadDef(ui_glcdTask, ui_gLCDshow, osPriorityNormal, 0, 128);
   ui_glcdTaskHandle =  osThreadCreate(osThread(ui_glcdTask), NULL);
 
+  float temp ;
+  char* temp_ch[10];
+
+
+
+
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -151,6 +162,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  temp = MLX90614_ReadTemp(DEFAULT_SA, MLX90614_TOBJ1);
+	  sprintf(temp_ch, "%f", temp);
+	    ST7565_Print(1, 1, temp_ch, &Font_11x18, 1, BLACK);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -194,6 +208,40 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**

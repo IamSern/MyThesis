@@ -20,6 +20,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
@@ -45,7 +46,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  D:/_Project/LVTN/RTOS_thesis/Source_gLCD/ST7565.h \
  D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h \
  D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h \
- D:/_Project/LVTN/RTOS_thesis/UI_gLCD/ui_gLCD.h
+ D:/_Project/LVTN/RTOS_thesis/UI_gLCD/ui_gLCD.h \
+ D:/_Project/LVTN/RTOS_thesis/MLX90614_src/MLX90614.h
 
 ../Core/Inc/main.h:
 
@@ -90,6 +92,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
+
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 
@@ -142,3 +146,5 @@ D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h:
 D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h:
 
 D:/_Project/LVTN/RTOS_thesis/UI_gLCD/ui_gLCD.h:
+
+D:/_Project/LVTN/RTOS_thesis/MLX90614_src/MLX90614.h:
