@@ -1,0 +1,10 @@
+main.c:66:6:ui_gLCDshow	16	static
+main.c:84:5:main	104	static
+main.c:165:6:SystemClock_Config	72	static
+main.c:204:13:MX_SPI2_Init	8	static
+main.c:242:13:MX_USART2_UART_Init	8	static
+main.c:275:13:MX_GPIO_Init	40	static
+main.c:318:6:StartDefaultTask	16	static
+main.c:337:6:StartTask02	16	static
+main.c:359:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:376:6:Error_Handler	4	static,ignoring_inline_asm
