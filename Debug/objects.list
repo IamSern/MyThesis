@@ -34,6 +34,7 @@
 "Middlewares/Third_Party/FreeRTOS/Source/timers.o"
 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o"
 "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o"
+"RC522_src/rc522.o"
 "Source_gLCD/ST7565.o"
 "Source_gLCD/fonts.o"
 "UI_gLCD/ui_gLCD.o"

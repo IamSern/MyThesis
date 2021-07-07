@@ -11,6 +11,7 @@ RM := rm -rf
 -include sources.mk
 -include UI_gLCD/subdir.mk
 -include Source_gLCD/subdir.mk
+-include RC522_src/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/subdir.mk
