@@ -23,10 +23,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
 #include "ST7565.h"
 #include "fonts.h"
 #include "ui_gLCD.h"
 #include "MLX90614.h"
+#include "rc522.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -71,18 +73,24 @@ void StartDefaultTask(void const * argument);
 void StartTask02(void const * argument);
 
 /* USER CODE BEGIN PFP */
-void ui_gLCDshow(void const * argument){
-  while (1)
-  {
-	  UIwait();
-  }
-  
-}
+uint8_t CardID[4];
+char* buffCardID[10];
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void ui_gLCDshow(void const * argument){
+  while (1)
+  {
+	  ST7565_Print(0, 0, "hello", &Font_7x9, 1, BLACK);
+	  if (MFRC522_Check(CardID) == MI_OK){
+      sprintf(buffCardID, "%2X%2X%2X%2X", CardID[0], CardID[1], CardID[2], CardID[3]);
+      ST7565_Print(1, 55, buffCardID, &Font_7x9, 1, BLACK);
+//      measurePress();
+    }
+  }
+  
+}
 /* USER CODE END 0 */
 
 /**
@@ -120,7 +128,7 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   ST7565_Init();
-  // mlx90614
+  MFRC522_Init();
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -153,27 +161,27 @@ int main(void)
   osThreadDef(ui_glcdTask, ui_gLCDshow, osPriorityNormal, 0, 128);
   ui_glcdTaskHandle =  osThreadCreate(osThread(ui_glcdTask), NULL);
 
-  float temp ;
-  char* temp_ch[10];
-
-
-
 
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
-//  osKernelStart();
+// osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(VALVE_GPIO_Port, VALVE_Pin, RESET);
-  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
+
   while (1)
   {
-	  temp = MLX90614_ReadTemp(DEFAULT_SA, MLX90614_TOBJ1);
-	  sprintf(temp_ch, "%f", temp);
-	    ST7565_Print(1, 1, temp_ch, &Font_11x18, 1, BLACK);
+	  ST7565_Print(0, 0, "test display", &Font_7x9, 1, BLACK);
+ 	  if (MFRC522_Check(CardID) == MI_OK){
+       sprintf(buffCardID, "%02X%02X%02X%02X", CardID[1], CardID[2], CardID[3], CardID[4]);
+       ST7565_Print(0, 55, buffCardID, &Font_7x9, 1, BLACK);
+//       measurePress();
+     }
+//UIwait();
+    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+    osDelay(200);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -484,8 +492,8 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-    osDelay(1000);
+	  // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+    // osDelay(1000);
   }
   /* USER CODE END 5 */
 }
@@ -503,8 +511,8 @@ void StartTask02(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  HAL_UART_Transmit(&huart2, (uint8_t*)"test RTOS\n", 10, 100);
-	  osDelay(3000);
+	  // HAL_UART_Transmit(&huart2, (uint8_t*)"test RTOS\n", 10, 100);
+	  // osDelay(3000);
 
 
   }

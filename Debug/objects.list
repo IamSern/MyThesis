@@ -37,4 +37,7 @@
 "RC522_src/rc522.o"
 "Source_gLCD/ST7565.o"
 "Source_gLCD/fonts.o"
+"Src_HX711/hx711.o"
 "UI_gLCD/ui_gLCD.o"
+"util/DWT_Delay.o"
+"util/Timer_Delay.o"

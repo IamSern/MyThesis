@@ -4,6 +4,8 @@
                     "d:/_Project/LVTN/RTOS_thesis/RC522_src",
                     "d:/_Project/LVTN/RTOS_thesis/Source_gLCD",
                     "d:/_Project/LVTN/RTOS_thesis/UI_gLCD",
+                    "d:/_Project/LVTN/RTOS_thesis/Src_HX711",
+                    "d:/_Project/LVTN/RTOS_thesis/util",
                     "d:/_Project/LVTN/RTOS_thesis/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS",
                     "d:/_Project/LVTN/RTOS_thesis/Middlewares/Third_Party/FreeRTOS/Source/include",
                     "d:/_Project/LVTN/RTOS_thesis/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3",

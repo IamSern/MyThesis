@@ -30,5 +30,7 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang \
 RC522_src \
 Source_gLCD \
+Src_HX711 \
 UI_gLCD \
+util \
 

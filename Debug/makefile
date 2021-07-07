@@ -9,7 +9,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include util/subdir.mk
 -include UI_gLCD/subdir.mk
+-include Src_HX711/subdir.mk
 -include Source_gLCD/subdir.mk
 -include RC522_src/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
