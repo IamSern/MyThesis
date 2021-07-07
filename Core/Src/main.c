@@ -27,6 +27,7 @@
 #include "fonts.h"
 #include "ui_gLCD.h"
 #include "MLX90614.h"
+#include "rc522.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,7 +121,7 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   ST7565_Init();
-  // mlx90614
+  MFRC522_Init();
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -155,7 +156,8 @@ int main(void)
 
   float temp ;
   char* temp_ch[10];
-
+  uint8_t id[4];
+  char* buff[10];
 
 
 
@@ -167,14 +169,15 @@ int main(void)
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(VALVE_GPIO_Port, VALVE_Pin, RESET);
-  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
+
   while (1)
   {
-	  temp = MLX90614_ReadTemp(DEFAULT_SA, MLX90614_TOBJ1);
-	  sprintf(temp_ch, "%f", temp);
-	    ST7565_Print(1, 1, temp_ch, &Font_11x18, 1, BLACK);
-    /* USER CODE END WHILE */
+	  if (MFRC522_Check(id) == MI_OK){
+      sprintf(buff, "%2X%2X%2X%2X", id[0], id[1], id[2], id[3]);
+      ST7565_Print(0, 55, buff,&Font_7x9, 1,BLACK);
+//      measurePrss();
+    }
+    /*USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }

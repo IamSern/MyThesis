@@ -47,7 +47,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h \
  D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h \
  D:/_Project/LVTN/RTOS_thesis/UI_gLCD/ui_gLCD.h \
- D:/_Project/LVTN/RTOS_thesis/MLX90614_src/MLX90614.h
+ D:/_Project/LVTN/RTOS_thesis/MLX90614_src/MLX90614.h \
+ D:/_Project/LVTN/RTOS_thesis/RC522_src/rc522.h
 
 ../Core/Inc/main.h:
 
@@ -148,3 +149,5 @@ D:/_Project/LVTN/RTOS_thesis/Source_gLCD/fonts.h:
 D:/_Project/LVTN/RTOS_thesis/UI_gLCD/ui_gLCD.h:
 
 D:/_Project/LVTN/RTOS_thesis/MLX90614_src/MLX90614.h:
+
+D:/_Project/LVTN/RTOS_thesis/RC522_src/rc522.h:
